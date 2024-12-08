@@ -1,0 +1,150 @@
+<!-- <div class="flex flex-col w-11/12 mx-auto mx-10 " >
+  <div class="flex flex-row justify-between bg-gray-400" >
+    <div>
+      <h4 class="text-2xl" >Employee Mean App</h4>
+    </div>
+    <button (click)="onClick()" >+Add Employee</button>
+  </div>
+  <div>
+    <h1 class="text-5xl">Employee Management</h1>
+  </div>
+  <div>
+    <app-emplyee-component></app-emplyee-component>
+      <div>
+          <p>Alex Johnson</p>
+          <p>Full Stack Developer</p>
+          <p>IT</p>
+      </div>
+      <div class="flex gap-2">
+          <button (click)="onClick()">Edit</button>
+          <button>Delete</button>
+      </div>
+  </div>
+  </div>
+
+
+  //model
+  <div class="flex flex-col w-1/4 " *ngIf="isModelActive" >
+    <div class="flex justify-between">
+      <div >
+        <h1>Add Employee</h1>
+      </div>
+      <div>
+         <button (click)="onCrossClick()">*</button>
+      </div>
+    </div>
+
+    <div>
+      <div  class="flex flex-col " >
+        <label for="">
+          Enter name
+        </label>
+        <input type="text" placeholder="Enter Employee Name">
+       </div>
+      <div class="flex flex-col " >
+        <label for="">
+          Enter Position
+        </label>
+        <input type="text" placeholder="Enter Employee Position">
+      </div>
+      <div class="flex flex-col " >
+        <label for="">
+          Enter Department
+        </label>
+        <select name="" id="">
+          <option value="IT">IT</option>
+          <option value="Design">Design</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <div class="flex justify-end gap-2">
+        <button (click)="onClose()" >Close</button>
+        <button>Submit</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<router-outlet /> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-col w-11/12 mx-auto">
+  <!-- Header Section -->
+  <div class="flex flex-row justify-between bg-gray-400 p-4">
+    <h4 class="text-2xl">Employee Mean App</h4>
+    <button (click)="onClick()" class="bg-blue-500 text-white px-4 py-2 rounded">+ Add Employee</button>
+  </div>
+
+  <!-- Main Content -->
+  <div class="mt-8">
+    <h1 class="text-5xl font-bold mb-6">Employee Management</h1>
+
+    <!-- Employee List -->
+    <div *ngFor="let employee of employees "  class="border rounded-lg p-4 mb-4">
+      <p>{{employee.name}}</p>
+      <p>{{employee.position}}</p>
+      <p>{{employee.dept}}</p>
+      <div class="flex gap-2 mt-2">
+        <button (click)="onEditClick()" class="bg-yellow-500 text-white px-4 py-2 rounded">Edit</button>
+        <button class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div *ngIf="isModelActive" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg w-1/3">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-2xl font-bold">Add Employee</h2>
+        <button (click)="onClose()" class="text-xl font-bold">×</button>
+      </div>
+
+      <!-- Form -->
+      <form [formGroup]="empForm" (ngSubmit)="onSubmit()" class="space-y-4">
+        <div class="flex flex-col">
+          <label for="name">Enter Name</label>
+          <input id="name" formControlName="name" type="text" class="border p-2 rounded" placeholder="Enter Employee Name">
+        </div>
+        <div class="flex flex-col">
+          <label for="position">Enter Position</label>
+          <input id="position" formControlName="position" type="text" class="border p-2 rounded" placeholder="Enter Employee Position">
+        </div>
+        <div class="flex flex-col">
+          <label for="department">Enter Department</label>
+          <select id="department" formControlName="dept" class="border p-2 rounded">
+            <option value="IT">IT</option>
+            <option value="Design">Design</option>
+          </select>
+        </div>
+            <!-- Modal Actions -->
+      <div class="flex justify-end gap-4 mt-6">
+        <button (click)="onClose()" class="bg-gray-500 text-white px-4 py-2 rounded">Close</button>
+        <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded">Submit</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
